@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration Form</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Course Registration Form</h2>
+    <form method="post" action="#" onsubmit="return validateForm()">
+        <label for="student_name">Student Name:</label>
+        <input type="text" id="student_name" name="student_name">
+        <span id="student_name_error" class="error"></span><br><br>
+
+        <label for="rollno">Roll Number:</label>
+        <input type="text" id="rollno" name="rollno">
+        <span id="rollno_error" class="error"></span><br><br>
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male"> Male
+        <input type="radio" id="female" name="gender" value="Female"> Female
+        <span id="gender_error" class="error"></span><br><br>
+
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year">
+        <span id="year_error" class="error"></span><br><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department">
+        <span id="department_error" class="error"></span><br><br>
+
+        <label for="section">Section:</label>
+        <input type="text" id="section" name="section">
+        <span id="section_error" class="error"></span><br><br>
+
+        <label for="mobile_no">Mobile Number:</label>
+        <input type="text" id="mobile_no" name="mobile_no">
+        <span id="mobile_no_error" class="error"></span><br><br>
+
+        <label for="email">E-Mail ID:</label>
+        <input type="text" id="email" name="email">
+        <span id="email_error" class="error"></span><br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="4" cols="36"></textarea>
+        <span id="address_error" class="error"></span><br><br>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+        <span id="city_error" class="error"></span><br><br>
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country">
+        <span id="country_error" class="error"></span><br><br>
+
+        <label for="pincode">Pincode:</label>
+        <input type="text" id="pincode" name="pincode">
+        <span id="pincode_error" class="error"></span><br><br>
+
+        <input type="submit" value="Submit Your Entries">
+        <input type="reset" value="Clear Your Entries">
+    </form>
+
+    <script>
+        function validateForm() {
+            var isValid = true;
+
+            // Reset error messages
+            var errorElements = document.getElementsByClassName('error');
+            for (var i = 0; i < errorElements.length; i++) {
+                errorElements[i].innerHTML = '';
+            }
+
+            // Student Name
+            var studentName = document.getElementById('student_name').value;
+            if (studentName === "") {
+                document.getElementById('student_name_error').innerHTML = "Please enter your name.";
+                isValid = false;
+            }
+
+            // Roll Number
+            var rollno = document.getElementById('rollno').value;
+            if (rollno === "") {
+                document.getElementById('rollno_error').innerHTML = "Please enter your roll number.";
+                isValid = false;
+            }
+
+            // Gender
+            var gender = document.getElementsByName('gender');
+            var genderSelected = false;
+            for (var i = 0; i < gender.length; i++) {
+                if (gender[i].checked) {
+                    genderSelected = true;
+                    break;
+                }
+            }
+            if (!genderSelected) {
+                document.getElementById('gender_error').innerHTML = "Please select your gender.";
+                isValid = false;
+            }
+
+            // Year
+            var year = document.getElementById('year').value;
+            if (year === "" || isNaN(year) || year.length !== 4) {
+                document.getElementById('year_error').innerHTML = "Please enter a valid year (e.g., 2024).";
+                isValid = false;
+            }
+
+            // Department
+            var department = document.getElementById('department').value;
+            if (department === "") {
+                document.getElementById('department_error').innerHTML = "Please enter your department.";
+                isValid = false;
+            }
+
+            // Section
+            var section = document.getElementById('section').value;
+            if (section === "") {
+                document.getElementById('section_error').innerHTML = "Please enter your section.";
+                isValid = false;
+            }
+
+            // Mobile Number
+            var mobileNo = document.getElementById('mobile_no').value;
+            var mobileNoPattern = /^[0-9]{10}$/;
+            if (!mobileNoPattern.test(mobileNo)) {
+                document.getElementById('mobile_no_error').innerHTML = "Please enter a valid 10-digit mobile number.";
+                isValid = false;
+            }
+
+            // Email
+            var email = document.getElementById('email').value;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('email_error').innerHTML = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            // Address
+            var address = document.getElementById('address').value;
+            if (address === "") {
+                document.getElementById('address_error').innerHTML = "Please enter your address.";
+                isValid = false;
+            }
+
+            // City
+            var city = document.getElementById('city').value;
+            if (city === "") {
+                document.getElementById('city_error').innerHTML = "Please enter your city.";
+                isValid = false;
+            }
+
+            // Country
+            var country = document.getElementById('country').value;
+            if (country === "") {
+                document.getElementById('country_error').innerHTML = "Please enter your country.";
+                isValid = false;
+            }
+
+            // Pincode
+            var pincode = document.getElementById('pincode').value;
+            var pincodePattern = /^[0-9]{6}$/;
+            if (!pincodePattern.test(pincode)) {
+                document.getElementById('pincode_error').innerHTML = "Please enter a valid 6-digit pincode.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
